@@ -1,11 +1,18 @@
+@import '~scss/breakpoints';
 @import '~scss/colors';
 
 .footer {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  font-size: calc(12px);
+  font-size: calc(14px);
   min-height: 0;
+  margin-bottom: 1rem;
+
+  // @media (min-width: $md) {
+  // flex-direction: row;
+  // }
 
   div {
     background-color: $white-transparent;
