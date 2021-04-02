@@ -1,0 +1,28 @@
+@import '~scss/breakpoints';
+@import '~scss/colors';
+
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 500px;
+
+    input {
+      background-color: #fff;
+    }
+
+    button {
+      height: 56px;
+      margin-top: 1rem;
+    }
+  }
+
+  .appointmentsLink {
+    margin-top: 1rem;
+  }
+}

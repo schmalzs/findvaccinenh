@@ -1,0 +1,31 @@
+@import '~scss/colors';
+
+body {
+  margin: 0;
+  font-family: 'Open Sans', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
+    'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+a {
+  color: $black;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.fill {
+  flex-grow: 1;
+}

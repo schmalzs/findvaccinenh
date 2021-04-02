@@ -1,0 +1,15 @@
+@import '~scss/colors';
+
+.app {
+  background-color: $white;
+  min-height: 100vh;
+  color: $black;
+
+  display: flex;
+  flex-direction: column;
+
+  main {
+    display: flex;
+    flex-direction: column;
+  }
+}

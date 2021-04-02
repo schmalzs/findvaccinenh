@@ -1,0 +1,32 @@
+@import '~scss/breakpoints';
+@import '~scss/colors';
+
+.header {
+  background-color: $white-transparent;
+  padding: 1rem;
+  text-align: center;
+
+  @media (min-width: $md) {
+    text-align: left;
+    justify-content: flex-start;
+  }
+
+  nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    h1 {
+      cursor: pointer;
+      display: inline-block;
+      font-size: calc(10px + 2.5vmin);
+      margin: 0 0 0 1rem;
+      align-self: center;
+      white-space: nowrap;
+    }
+
+    @media (min-width: $md) {
+      font-size: calc(10px + 4vmin);
+    }
+  }
+}

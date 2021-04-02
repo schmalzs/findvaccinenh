@@ -1,0 +1,41 @@
+@import '~scss/breakpoints';
+@import '~scss/colors';
+
+.button {
+  border: 0;
+  border-radius: 8px;
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  box-sizing: border-box;
+  cursor: pointer;
+  font-size: calc(10px + 1vmin);
+  font-weight: 900;
+  outline-color: $black;
+  padding: 12px 32px;
+  text-transform: uppercase;
+  transition: 0.3s;
+
+  &:hover {
+    transform: translateY(-7px);
+  }
+
+  &.primary {
+    background-color: $green;
+    border: 1px solid $black;
+    color: $black;
+
+    &:hover {
+      background-color: $green-hover;
+    }
+  }
+
+  &.secondary {
+    background-color: $white;
+    border: 1px solid $black;
+    color: $black;
+
+    &:hover {
+      background-color: $white-hover;
+    }
+  }
+}

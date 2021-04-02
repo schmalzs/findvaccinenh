@@ -1,0 +1,14 @@
+@import '~scss/colors';
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: calc(12px);
+  min-height: 0;
+
+  div {
+    background-color: $white-transparent;
+    padding: 0.5em 1em;
+  }
+}

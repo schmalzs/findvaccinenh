@@ -1,0 +1,16 @@
+@import '~scss/breakpoints';
+@import '~scss/colors';
+
+.root {
+  margin-top: 1rem;
+
+  &.mobile {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+
+    .entry {
+      margin-top: 1rem;
+    }
+  }
+}
