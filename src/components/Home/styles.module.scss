@@ -12,8 +12,13 @@
     justify-content: center;
     max-width: 500px;
 
-    input {
+    .zipCode {
       background-color: #fff;
+    }
+
+    .rangeDistance {
+      background-color: #fff;
+      margin-top: 1rem;
     }
 
     button {

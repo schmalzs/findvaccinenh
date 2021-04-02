@@ -11,6 +11,10 @@ import styles from './styles.module.scss';
 const Home = () => {
   const [loading, setLoading] = useState(false);
   const [zipCode, setZipCode] = useState({ value: '', error: false });
+  const [rangeDistance, setRangeDistance] = useState({
+    value: '20',
+    error: false,
+  });
   const [appointments, setAppointments] = useState<Appointment[] | null>(null);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -27,6 +31,7 @@ const Home = () => {
 
       const { data } = await axios.post('/api/appointment', {
         zipCode: zipCodeValue,
+        rangeDistance: rangeDistance.value,
       });
 
       setAppointments(data as Appointment[]);
@@ -43,6 +48,7 @@ const Home = () => {
       <form noValidate autoComplete="off" onSubmit={handleSubmit}>
         <TextField
           autoFocus
+          className={styles.zipCode}
           label="Zip Code"
           variant="outlined"
           error={zipCode.error}
@@ -51,6 +57,26 @@ const Home = () => {
             setZipCode({ value: event.target.value, error: false })
           }
         />
+
+        <TextField
+          className={styles.rangeDistance}
+          select
+          label="Within"
+          value={rangeDistance.value}
+          onChange={(event) =>
+            setRangeDistance({ value: event.target.value, error: false })
+          }
+          SelectProps={{
+            native: true,
+          }}
+          variant="outlined"
+        >
+          <option value="5">5 miles</option>
+          <option value="10">10 miles</option>
+          <option value="20">20 miles</option>
+          <option value="50">50 miles</option>
+          <option value="100">100 miles</option>
+        </TextField>
         <Button
           type="submit"
           variant="contained"
