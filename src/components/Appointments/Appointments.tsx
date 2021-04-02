@@ -50,7 +50,7 @@ const Appointments = ({ data }: Props) => {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>Date</TableCell>
+              <TableCell>Next Available Appointment</TableCell>
               <TableCell>City</TableCell>
               <TableCell>Location</TableCell>
             </TableRow>
