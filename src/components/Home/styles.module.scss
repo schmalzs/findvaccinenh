@@ -10,15 +10,27 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    min-width: 343px;
     max-width: 500px;
 
-    .zipCode {
-      background-color: #fff;
-    }
-
-    .rangeDistance {
+    .textbox {
       background-color: #fff;
       margin-top: 1rem;
+    }
+
+    .select {
+      background-color: #fff;
+      margin-top: 1rem;
+    }
+
+    .datePicker {
+      margin-top: 1rem;
+    }
+
+    .warn {
+      color: #ff0000;
+      margin-top: 1rem;
+      text-align: center;
     }
 
     button {

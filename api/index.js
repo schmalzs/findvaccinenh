@@ -1,5 +1,6 @@
 const { StatusCodes } = require('http-status-codes');
 const BadRequestError = require('./errors/BadRequestError');
+const getAllAppointments = require('./getAllAppointments');
 const getAppointments = require('./getAppointments');
 const respond = require('./utils/respond');
 
@@ -9,6 +10,14 @@ exports.main = async (event) => {
     const operation = `${httpMethod} ${resource}`;
 
     switch (operation) {
+      case 'POST /appointment/county': {
+        const body = await getAllAppointments(event);
+        return respond({
+          statusCode: StatusCodes.OK,
+          body,
+        });
+      }
+
       case 'POST /appointment': {
         const body = await getAppointments(event);
         return respond({

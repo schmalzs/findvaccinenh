@@ -1,6 +1,29 @@
 const qs = require('qs');
 
-const buildPayload = ({ zipCode, rangeDistance }) => {
+const mapDoseType = (doseType) => {
+  if (doseType === 'dose-1') return 'Dose-1';
+  if (doseType === 'dose-2') return 'Dose-2';
+  return '';
+};
+
+const mapVaccineType = (vaccineType) => {
+  if (vaccineType === 'all')
+    return 'Pfizer-BioNTech;Moderna;Johnson & Johnson;All';
+  if (vaccineType === 'pfizer') return 'Pfizer-BioNTech';
+  if (vaccineType === 'moderna') return 'Moderna';
+  if (vaccineType === 'johnson-and-johnson') return 'Johnson & Johnson';
+  return '';
+};
+
+const mapDose1Date = (dose1Date) => `${dose1Date}T12:00:00.000Z`;
+
+const buildPayload = ({
+  zipCode,
+  rangeDistance,
+  doseType,
+  vaccineType,
+  dose1Date,
+}) => {
   const message = JSON.stringify({
     actions: [
       {
@@ -14,9 +37,9 @@ const buildPayload = ({ zipCode, rangeDistance }) => {
           params: {
             inputAddress: zipCode,
             rangeDistance: Number(rangeDistance),
-            manuName: 'Pfizer-BioNTech;Moderna;Johnson & Johnson;All',
-            doseType: 'Dose-1',
-            dose1Date: '2021-03-31T23:44:57.370Z',
+            manuName: mapVaccineType(vaccineType),
+            doseType: mapDoseType(doseType),
+            dose1Date: mapDose1Date(dose1Date),
             doLocSearch: true,
           },
           cacheable: false,

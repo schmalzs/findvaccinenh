@@ -3,7 +3,7 @@ const { Runtime } = require('@aws-cdk/aws-lambda');
 const { NodejsFunction } = require('@aws-cdk/aws-lambda-nodejs');
 const { Duration } = require('@aws-cdk/core');
 
-const { DOMAIN_NAME } = process.env;
+const { DOMAIN_NAME, REDIS_HOSTNAME, REDIS_PORT, REDIS_PASSWORD } = process.env;
 
 class FindVaccineNHApiLambda extends NodejsFunction {
   constructor(scope) {
@@ -11,13 +11,17 @@ class FindVaccineNHApiLambda extends NodejsFunction {
       throw new Error('Missing DOMAIN_NAME environment variable');
     }
 
+    if (!REDIS_HOSTNAME || !REDIS_PORT || !REDIS_PASSWORD) {
+      throw new Error('Missing redis environment variable(s)');
+    }
+
     super(scope, 'FindVaccineNHApiLambda', {
       functionName: 'FindVaccineNHApiLambda',
       runtime: Runtime.NODEJS_10_X,
       entry: 'api/index.js',
       handler: 'main',
-      environment: { DOMAIN_NAME },
-      timeout: Duration.seconds(10),
+      environment: { DOMAIN_NAME, REDIS_HOSTNAME, REDIS_PORT, REDIS_PASSWORD },
+      timeout: Duration.seconds(120),
       role: new Role(scope, 'FindVaccineNHApiLambdaRole', {
         assumedBy: new ServicePrincipal('lambda.amazonaws.com'),
       }),

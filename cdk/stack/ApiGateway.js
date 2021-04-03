@@ -14,6 +14,9 @@ class ApiGateway extends RestApi {
 
     const accounts = this.root.addResource('appointment');
     accounts.addMethod('POST', integration);
+
+    const county = accounts.addResource('county');
+    county.addMethod('POST', integration);
   }
 }
 
