@@ -1,12 +1,12 @@
 const buildPayload = require('./utils/buildPayload');
-const { getAppointmentsInput } = require('./utils/getInput');
+const { getAppointmentsByZipCodeInput } = require('./utils/getInput');
 const makeRequest = require('./utils/makeRequest');
 const mapResponse = require('./utils/mapResponse');
 
-const getAppointments = async (event) => {
+const getAppointmentsByZipCode = async (event) => {
   const body = JSON.parse(event.body);
 
-  const input = getAppointmentsInput(body);
+  const input = getAppointmentsByZipCodeInput(body);
   const payload = buildPayload(input);
   const res = await makeRequest(payload);
   const records = mapResponse(res);
@@ -14,4 +14,4 @@ const getAppointments = async (event) => {
   return records;
 };
 
-module.exports = getAppointments;
+module.exports = getAppointmentsByZipCode;

@@ -14,15 +14,15 @@ Resources:
       Timeout: 120
       Handler: api/index.main
       Events:
-        GetAllAppointments:
+        GetAppointmentsByCounty:
           # Type: HttpApi # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
             Path: /appointment/county
             Method: post
-        GetAppointments:
+        GetAppointmentsByZipCode:
           # Type: HttpApi # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
-            Path: /appointment
+            Path: /appointment/zip-code
             Method: post

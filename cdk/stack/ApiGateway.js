@@ -13,10 +13,12 @@ class ApiGateway extends RestApi {
     const integration = new LambdaIntegration(handler);
 
     const accounts = this.root.addResource('appointment');
-    accounts.addMethod('POST', integration);
 
     const county = accounts.addResource('county');
     county.addMethod('POST', integration);
+
+    const zipCode = accounts.addResource('zip-code');
+    zipCode.addMethod('POST', integration);
   }
 }
 

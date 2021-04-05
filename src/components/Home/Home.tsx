@@ -44,7 +44,7 @@ const Home = () => {
       setLoading(true);
 
       if (searchType.value === 'ZIP_CODE') {
-        const { data } = await axios.post('/api/appointment', {
+        const { data } = await axios.post('/api/appointment/zip-code', {
           zipCode: zipCode.value.trim(),
           rangeDistance: rangeDistance.value,
           doseType: doseType.value,

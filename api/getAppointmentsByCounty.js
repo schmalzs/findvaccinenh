@@ -2,8 +2,8 @@ const _ = require('lodash');
 const redis = require('redis');
 const buildPayload = require('./utils/buildPayload');
 const {
-  getAppointmentsInput,
-  getAllAppointmentsInput,
+  getAppointmentsByZipCodeInput,
+  getAppointmentsByCountyInput,
 } = require('./utils/getInput');
 const makeRequest = require('./utils/makeRequest');
 const mapResponse = require('./utils/mapResponse');
@@ -50,7 +50,7 @@ const queryAllAppointments = async (input) => {
     const responses = await Promise.all(
       batch.map(async (zipCode) => {
         const payload = buildPayload(
-          getAppointmentsInput({ zipCode, ...input })
+          getAppointmentsByZipCodeInput({ zipCode, ...input })
         );
         const res = await makeRequest(payload);
         return { zipCode, result: mapResponse(res) };
@@ -73,11 +73,11 @@ const queryAllAppointments = async (input) => {
   return dedupedData;
 };
 
-const getAllAppointments = async (event) => {
+const getAppointmentsByCounty = async (event) => {
   await connectToRedis();
 
   const body = JSON.parse(event.body);
-  const input = getAllAppointmentsInput(body);
+  const input = getAppointmentsByCountyInput(body);
   const cachedData = await getCachedAppointments(input);
 
   const cacheKey = getCacheKey(body);
@@ -91,4 +91,4 @@ const getAllAppointments = async (event) => {
   return await queryAllAppointments(input);
 };
 
-module.exports = getAllAppointments;
+module.exports = getAppointmentsByCounty;

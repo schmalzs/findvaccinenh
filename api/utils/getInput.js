@@ -25,7 +25,7 @@ const isVaidCounty = (county) =>
     'SULLIVAN',
   ].includes(county);
 
-const getAppointmentsInput = ({
+const getAppointmentsByZipCodeInput = ({
   zipCode,
   rangeDistance = '20',
   doseType = 'dose-1',
@@ -55,7 +55,7 @@ const getAppointmentsInput = ({
   return { zipCode, rangeDistance, doseType, vaccineType, dose1Date };
 };
 
-const getAllAppointmentsInput = ({
+const getAppointmentsByCountyInput = ({
   county,
   rangeDistance = '5',
   doseType = 'dose-1',
@@ -85,4 +85,7 @@ const getAllAppointmentsInput = ({
   return { county, rangeDistance, doseType, vaccineType, dose1Date };
 };
 
-module.exports = { getAppointmentsInput, getAllAppointmentsInput };
+module.exports = {
+  getAppointmentsByZipCodeInput,
+  getAppointmentsByCountyInput,
+};

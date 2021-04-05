@@ -1,7 +1,7 @@
 const { StatusCodes } = require('http-status-codes');
 const BadRequestError = require('./errors/BadRequestError');
-const getAllAppointments = require('./getAllAppointments');
-const getAppointments = require('./getAppointments');
+const getAppointmentsByCounty = require('./getAppointmentsByCounty');
+const getAppointmentsByZipCode = require('./getAppointmentsByZipCode');
 const respond = require('./utils/respond');
 
 exports.main = async (event) => {
@@ -11,7 +11,15 @@ exports.main = async (event) => {
 
     switch (operation) {
       case 'POST /appointment/county': {
-        const body = await getAllAppointments(event);
+        const body = await getAppointmentsByCounty(event);
+        return respond({
+          statusCode: StatusCodes.OK,
+          body,
+        });
+      }
+
+      case 'POST /appointment/zip-code': {
+        const body = await getAppointmentsByZipCode(event);
         return respond({
           statusCode: StatusCodes.OK,
           body,
@@ -19,7 +27,7 @@ exports.main = async (event) => {
       }
 
       case 'POST /appointment': {
-        const body = await getAppointments(event);
+        const body = await getAppointmentsByZipCode(event);
         return respond({
           statusCode: StatusCodes.OK,
           body,
