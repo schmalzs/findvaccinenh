@@ -1,0 +1,45 @@
+@import '~scss/breakpoints';
+@import '~scss/colors';
+
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 343px;
+    max-width: 500px;
+
+    .textbox {
+      background-color: #fff;
+      margin-top: 1rem;
+    }
+
+    .select {
+      background-color: #fff;
+      margin-top: 1rem;
+    }
+
+    .datePicker {
+      margin-top: 1rem;
+    }
+
+    .warn {
+      color: #ff0000;
+      margin-top: 1rem;
+      text-align: center;
+    }
+
+    button {
+      height: 56px;
+      margin-top: 1rem;
+    }
+  }
+
+  .appointmentsLink {
+    margin-top: 1rem;
+  }
+}

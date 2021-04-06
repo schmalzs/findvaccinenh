@@ -1,5 +1,3 @@
-const _ = require('lodash');
-
 const mapAppointmentByDateResponse = (res) =>
   JSON.parse(res.data.actions[0].returnValue.returnValue).map((item) => ({
     id: item.Id,

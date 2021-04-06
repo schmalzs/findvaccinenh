@@ -219,7 +219,14 @@ const Home = () => {
           View Your Appointments
         </a>
       </div>
-      {!loading && appointments && <Appointments data={appointments} />}
+      {!loading && appointments && (
+        <Appointments
+          data={appointments}
+          doseType={doseType.value}
+          vaccineType={vaccineType.value}
+          dose1Date={dose1Date.value}
+        />
+      )}
     </div>
   );
 };

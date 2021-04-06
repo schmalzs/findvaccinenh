@@ -7,8 +7,10 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import cx from 'classnames';
 import { useWindowDimensions } from 'hooks';
+import qs from 'qs';
 import { ReactNode } from 'react';
 import { Appointment } from 'types';
+import { Link } from 'wouter';
 import styles from './styles.module.scss';
 
 const Wrapper = ({
@@ -21,14 +23,30 @@ const Wrapper = ({
 
 type Props = {
   data?: Appointment[];
+  doseType: string;
+  vaccineType: string;
+  dose1Date: string;
 };
 
-const Appointments = ({ data }: Props) => {
+const Appointments = ({ data, doseType, vaccineType, dose1Date }: Props) => {
   const { width } = useWindowDimensions();
 
   if (!data || data.length === 0) {
     return <Wrapper>No available appointments found</Wrapper>;
   }
+
+  const LocationLink = ({ item }: { item: Appointment }) => (
+    <Link
+      href={`/location?${qs.stringify({
+        ...item,
+        doseType,
+        vaccineType,
+        dose1Date,
+      })}`}
+    >
+      {item.name}
+    </Link>
+  );
 
   if (width < 600) {
     return (
@@ -37,7 +55,9 @@ const Appointments = ({ data }: Props) => {
           <div className={styles.entry} key={JSON.stringify(item)}>
             <strong>{item.date}</strong>
             <br />
-            {item.city} - {item.name}
+            <LocationLink item={item} />
+            <br />
+            {item.city}
           </div>
         ))}
       </Wrapper>
@@ -60,7 +80,9 @@ const Appointments = ({ data }: Props) => {
               <TableRow key={JSON.stringify(item)}>
                 <TableCell>{item.date}</TableCell>
                 <TableCell>{item.city}</TableCell>
-                <TableCell>{item.name}</TableCell>
+                <TableCell>
+                  <LocationLink item={item} />
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
