@@ -1,6 +1,8 @@
 const { StatusCodes } = require('http-status-codes');
 const BadRequestError = require('./errors/BadRequestError');
 const getAppointmentsByCounty = require('./getAppointmentsByCounty');
+const getAppointmentsByDate = require('./getAppointmentsByDate');
+const getAppointmentsByLocation = require('./getAppointmentsByLocation');
 const getAppointmentsByZipCode = require('./getAppointmentsByZipCode');
 const respond = require('./utils/respond');
 
@@ -26,8 +28,16 @@ exports.main = async (event) => {
         });
       }
 
-      case 'POST /appointment': {
-        const body = await getAppointmentsByZipCode(event);
+      case 'POST /appointment/location': {
+        const body = await getAppointmentsByLocation(event);
+        return respond({
+          statusCode: StatusCodes.OK,
+          body,
+        });
+      }
+
+      case 'POST /appointment/date': {
+        const body = await getAppointmentsByDate(event);
         return respond({
           statusCode: StatusCodes.OK,
           body,

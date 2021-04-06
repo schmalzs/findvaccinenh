@@ -19,6 +19,12 @@ class ApiGateway extends RestApi {
 
     const zipCode = accounts.addResource('zip-code');
     zipCode.addMethod('POST', integration);
+
+    const location = accounts.addResource('location');
+    location.addMethod('POST', integration);
+
+    const date = accounts.addResource('date');
+    date.addMethod('POST', integration);
   }
 }
 

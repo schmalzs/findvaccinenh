@@ -1,12 +1,13 @@
 const _ = require('lodash');
 
-const mapResponse = (res) => {
+const mapAppointmentByGeoLocationResponse = (res) => {
   const { LocationInfo } = JSON.parse(
     res.data.actions[0].returnValue.returnValue
   );
 
   return _.chain(LocationInfo)
     .map((location) => ({
+      id: _.get(location, 'Id', ''),
       date: _.get(location, 'VMS_Service_Appointments__r.records[0].Date__c'),
       city: _.get(location, 'VAMS_City__c', '').toUpperCase(),
       name: _.get(location, 'Name', '').toUpperCase(),
@@ -16,4 +17,4 @@ const mapResponse = (res) => {
     .value();
 };
 
-module.exports = mapResponse;
+module.exports = mapAppointmentByGeoLocationResponse;

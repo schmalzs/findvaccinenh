@@ -1,12 +1,14 @@
 const _ = require('lodash');
 const redis = require('redis');
-const buildPayload = require('./utils/buildPayload');
+const {
+  buildAppointmentByGeoLocationPayload,
+} = require('./utils/buildPayload');
 const {
   getAppointmentsByZipCodeInput,
   getAppointmentsByCountyInput,
 } = require('./utils/getInput');
 const makeRequest = require('./utils/makeRequest');
-const mapResponse = require('./utils/mapResponse');
+const { mapAppointmentByGeoLocationResponse } = require('./utils/mapResponse');
 const ZIP_CODES = require('./utils/nhZipCodes');
 
 const CACHE_TTL = 60 * 5; // 5-minutes
@@ -49,11 +51,11 @@ const queryAllAppointments = async (input) => {
   for (let batch of zipCodeBatches) {
     const responses = await Promise.all(
       batch.map(async (zipCode) => {
-        const payload = buildPayload(
+        const payload = buildAppointmentByGeoLocationPayload(
           getAppointmentsByZipCodeInput({ zipCode, ...input })
         );
         const res = await makeRequest(payload);
-        return { zipCode, result: mapResponse(res) };
+        return { zipCode, result: mapAppointmentByGeoLocationResponse(res) };
       })
     );
 
