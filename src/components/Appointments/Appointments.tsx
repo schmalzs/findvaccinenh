@@ -10,7 +10,6 @@ import { useWindowDimensions } from 'hooks';
 import qs from 'qs';
 import { ReactNode } from 'react';
 import { Appointment } from 'types';
-import { Link } from 'wouter';
 import styles from './styles.module.scss';
 
 const Wrapper = ({
@@ -36,7 +35,9 @@ const Appointments = ({ data, doseType, vaccineType, dose1Date }: Props) => {
   }
 
   const LocationLink = ({ item }: { item: Appointment }) => (
-    <Link
+    <a
+      target="_blank"
+      rel="noreferrer"
       href={`/location?${qs.stringify({
         ...item,
         doseType,
@@ -45,7 +46,7 @@ const Appointments = ({ data, doseType, vaccineType, dose1Date }: Props) => {
       })}`}
     >
       {item.name}
-    </Link>
+    </a>
   );
 
   if (width < 600) {
